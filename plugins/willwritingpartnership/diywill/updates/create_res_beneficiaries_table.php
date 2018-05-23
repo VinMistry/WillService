@@ -8,11 +8,7 @@ class CreateResBeneficiariesTable extends Migration
 {
     public function up()
     {
-        Schema::create('willwritingpartership_diywill_res_beneficiaries', function(Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->increments('id');
-            $table->timestamps();
-        });
+
     }
 
     public function down()

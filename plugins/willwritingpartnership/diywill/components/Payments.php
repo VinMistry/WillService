@@ -1,4 +1,4 @@
-<?php namespace WillWritingPartership\DIYWill\Components;
+<?php namespace WillWritingPartnership\DIYWill\Components;
 
 use Cms\Classes\ComponentBase;
 
@@ -7,7 +7,7 @@ class Payments extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name'        => 'Payments Component',
+            'name'        => 'payments',
             'description' => 'No description provided yet...'
         ];
     }

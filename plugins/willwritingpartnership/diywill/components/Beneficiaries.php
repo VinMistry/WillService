@@ -1,13 +1,18 @@
-<?php namespace WillWritingPartership\DIYWill\Components;
+<?php
+
+namespace WillWritingPartnership\DIYWill\Components;
 
 use Cms\Classes\ComponentBase;
+use Input;
+use DB;
+use Redirect;
 
 class Beneficiaries extends ComponentBase
 {
     public function componentDetails()
     {
         return [
-            'name'        => 'Beneficiaries Component',
+            'name'        => 'Beneficiaries',
             'description' => 'No description provided yet...'
         ];
     }

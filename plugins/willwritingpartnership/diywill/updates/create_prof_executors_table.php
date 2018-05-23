@@ -8,15 +8,23 @@ class CreateProfExecutorsTable extends Migration
 {
     public function up()
     {
-        Schema::create('willwritingpartership_diywill_prof_executors', function(Blueprint $table) {
+        Schema::create('professionalexecutors', function(Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
+            $table->integer('appointedid');
+            $table->foreign('appointedid')->references('id')->on('appointedexecutors');
+            $table->boolean('twptoact');
+            $table->string('firmname',50);
+            $table->string('contactnumber',50);
+            $table->string('street',100);
+            $table->string('city',50);
+            $table->string('postcode',10);
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('willwritingpartership_diywill_prof_executors');
+        Schema::dropIfExists('professionalexecutors');
     }
 }

@@ -8,15 +8,26 @@ class CreateClientDatasTable extends Migration
 {
     public function up()
     {
-        Schema::create('willwritingpartership_diywill_client_datas', function(Blueprint $table) {
+        Schema::create('useraccount', function(Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
+            $table->string('title',5);
+            $table->string('firstname',50);
+            $table->string('lastname',50);
+            $table->string('emailaddress',100);
+            $table->string('contactnumber',50);
+            $table->string('contactnumberwork',50);
+            $table->string('contactnumberhome',50);
+            $table->string('street',100);
+            $table->string('city',50);
+            $table->string('postcode',10);
+            $table->boolean('termsandcon');
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('willwritingpartership_diywill_client_datas');
+        Schema::dropIfExists('useraccount');
     }
 }

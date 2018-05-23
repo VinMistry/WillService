@@ -1,4 +1,4 @@
-<?php namespace WillWritingPartership\DIYWill\Components;
+<?php namespace WillWritingPartnership\DIYWill\Components;
 
 use Cms\Classes\ComponentBase;
 

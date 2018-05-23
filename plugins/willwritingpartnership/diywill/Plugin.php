@@ -50,10 +50,17 @@ class Plugin extends PluginBase
      */
     public function registerComponents()
     {
-        return []; // Remove this line to activate
-
         return [
-            'WillWritingPartnership\DIYWill\Components\MyComponent' => 'myComponent',
+            'WillWritingPartnership\DIYWill\Components\Beneficiaries' => 'beneficiaries',
+            'WillWritingPartnership\DIYWill\Components\ClientData' => 'clientdata',
+            'WillWritingPartnership\DIYWill\Components\Executors' => 'executors',
+            'WillWritingPartnership\DIYWill\Components\FuneralArrangements' => 'funeralarrangements',
+            'WillWritingPartnership\DIYWill\Components\Payments' => 'payments',
+            'WillWritingPartnership\DIYWill\Components\PDFWill' => 'pdfwill',
+            'WillWritingPartnership\DIYWill\Components\ProfExecutors' => 'profexecutors',
+            'WillWritingPartnership\DIYWill\Components\ResBeneficiaries' => 'resbeneficiaries',
+            'WillWritingPartnership\DIYWill\Components\TermsAndCon' => 'termsandcon',
+            'WillWritingPartnership\DIYWill\Components\Testators' => 'testators',
         ];
     }
 
@@ -64,7 +71,6 @@ class Plugin extends PluginBase
      */
     public function registerPermissions()
     {
-        return []; // Remove this line to activate
 
         return [
             'willwritingpartnership.diywill.some_permission' => [
@@ -81,7 +87,7 @@ class Plugin extends PluginBase
      */
     public function registerNavigation()
     {
-        return []; // Remove this line to activate
+
 
         return [
             'diywill' => [
