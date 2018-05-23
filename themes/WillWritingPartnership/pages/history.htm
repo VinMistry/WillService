@@ -1,0 +1,159 @@
+title = "Demonstration"
+url = "/history"
+layout = "default"
+[genericForm]
+messages_success = "Your form was successfully submitted"
+messages_errors = "There were errors with your submission"
+inline_errors = "disabled"
+sanitize_data = "htmlspecialchars"
+==
+
+<div class="container">
+    <div class="faq-top card">
+        <img class="faq-top card-img-top img-fluid " src="{{ 'assets/images/willpic2.jpg'|theme }}" alt="Card image cap">
+        <div class="faq-top card-body text-center">
+            <h1 class="faq-top card-title">History</h1>
+        </div>
+        <p class="faq-top-text text-center">Steve and Sandra Williams and Antony Brinkman, formed the Willwriting Partnership in 1999. Whilst trading in its own right, it formed part of a limited company called The Bamford Partnership Ltd, which dealt primarily with mortgage business. The Will
+            writing business was primarily a service to the company’s mortgage clients, as making or reviewing a Will at a time of change in one’s financial circumstances (obtaining a mortgage) made a lot of sense.
+        </p>
+    </div>
+</div>
+<br>
+{% component "genericForm" %}
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <img class="img-fluid" src="{{ 'assets/images/825.jpeg'|theme }}">
+            <br>
+            <h2>Company History</h2>
+            <p>Seeing the ‘credit crunch’ on the horizon the three shareholders sold the mortgage business in 2006, but retained the Will writing clients, whom Sandra in particular continued to service catering for referral business as well as reviewing clients existing Wills where a re-write of the Will was necessary</p>
+            <p>In 2008 the three family members decided that The Willwriting Partnership should be actively promoted as a ‘stand alone’ Will writing business. A complete review was undertaken and as a result, a ‘parent’ company called The Boundary House Partnership Ltd was formed, the stationery was redesigned, a website was created and all three members of the family attended refresher training courses in order to be ‘up to speed’ with the latest legislation etc. It was also decided to become a member of The Society of Will Writers. The Society is the leading body in the country representing the Will writing profession, and provides valuable software, technical and expert support to its members. As part of becoming a member, and in order to obtain the requisite Professional Indemnity Insurance, Steve, Sandra and Antony had to take an examination to qualify for membership. You will notice the Society’s logo on our stationery.</p>
+            <p>At the beginning of 2011, Steve and Sandra decided that they wanted to retire and offered to sell the business to Antony. The sale went through in February of 2011, at which time Antony made a full review of all procedures, marketing, client contact, goals and future intentions. With a new and determined outlook and intention to increase the number of services and the value of the service provided to every single client, we outlined our new business plan.</p>
+            <p>Our business plan is to provide a personal, professional and exclusive service to our clients at a competitive price. Whilst it is possible, if they so wish, for clients to visit our offices, our service includes home visits, which tend to be more informal and more comfortable for the client. On the first visit we explain the different elements contained in a Will, illustrating to the client where necessary, the significance of each part of the Will. We take notes of each client’s circumstances and take their instructions about what they wish their Will to achieve. During the course of taking instructions we also expect to provide free advice to our clients about associated matters relating to the Will such as Inheritance Tax, Lasting Power of Attorney, Care Home Charges, Probate, Intestacy, or Trusts. Sometimes, we can suggest a more effective or tax efficient way of achieving what the client wishes to do. Frequently not only is the advice free but so is the implementation of the suggestion. Occasionally however where there is a beneficial but complex solution to a problem there can be an additional cost. Where this is the case, we would illustrate the potential saving from the benefit against the cost of implementation, thus giving the client the opportunity to make an informed decision whether to proceed with that particular recommendation.</p>
+            <p>The company is expanding. We are recognised both within our industry and by the many professionals who use our service on a regular basis as being an industrious, ethical, friendly and professional service that can be trusted to provide a first-class customer experience. As such, we now have consultants in many areas and can cater to clients around the UK. The future of the company is very strong and despite our continued growth, our clients continue to tell us just how personal and friendly they found us to deal with.</p>
+            <p>One of the advantages of being a small family company is that we cannot be dictated to by a higher authority that insists on more sales and bigger profits at the expense of service to the client. We are driven by our own standards and business ethics, and it is our intention to place the interests of the client before any other at all times, even if by so doing we sacrifice sales income we could otherwise expect.</p>
+            <p>Currently, the Will writing industry is not regulated by any independent body, and it was for this reason that we decided to become a member of The Society of Willwriters as they promote a code of conduct for the industry. A code that we are more than happy to subscribe to.</p>
+            <p>Being members of the Society also means that if required, for example in a particularly complex case, we have access to experts in each of the different fields of activity that we are engaged in, which in addition to Will writing includes Probate and Estate Administration, Trusts and Trust Administration, Inheritance Tax and Estate Planning, effective planning for Care Home Charges, Funeral Plan Arrangements and preparing and submitting Lasting Power of Attorney documents to the Office of the Public Guardian</p>
+            <br>
+            <h2>Reasons to use The Will Writing Partnership</h2>
+            <ul>
+                <li>Home visit service – we come to see you, not the other way round.</li>
+                <li>There are no pushy salesmen or call-centres!</li>
+                <li>Fair prices with outstanding service</li>
+                <li>FREE will reviews in the future</li>
+                <li>Members of the Society of Will Writers</li>
+                <li>Established in 1999</li>
+                <li>Very friendly (see testimonials)</li>
+                <li>Very professional (see testimonials)</li>
+                <li>Plenty of advice and after-service care</li>
+                <li>Completely confidential service</li>
+            </ul>
+        </div>
+
+        <div class="col-md-4">
+            <div class="container">
+                <div class="card bg-light mb-3">
+                    <div class="card-body">
+                        <img class="card-img-top" src="{{ 'assets/images/092.png'|theme }}" alt="Card image cap" style="width:20%;">
+                        <h3 class="card-title">Funeral Planning</h3>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    </div>
+                    <a href="{{ 'funeral'|page }}" class="btn btn-primary btn-lg btn-bloc">Learn More...</a>
+                </div>
+            </div>
+
+            <div class="container">
+
+                <div class="card bg-light mb-3">
+                    <div class="card-body">
+                        <img class="card-img-top" src="{{ 'assets/images/080.png'|theme }}" alt="Card image cap" style="width:20%;">
+                        <h3 class="card-title">Inheritance Tax</h3>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    </div>
+                    <a href="{{ 'inheritance'|page }}" class="btn btn-primary btn-lg btn-bloc">Learn More...</a>
+                </div>
+            </div>
+
+            <div class="container">
+
+                <div class="card bg-light mb-3">
+                    <div class="card-body">
+                        <img class="card-img-top" src="{{ 'assets/images/107.png'|theme }}" alt="Card image cap" style="width:20%;">
+                        <h3 class="card-title">Probate</h3>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    </div>
+                    <a href="{{ 'probate'|page }}" class="btn btn-primary btn-lg btn-bloc">Learn More...</a>
+                </div>
+            </div>
+
+            <div class="container">
+
+                <div class="card bg-light mb-3">
+                    <div class="card-body">
+                        <img class="card-img-top" src="{{ 'assets/images/119.png'|theme }}" alt="Card image cap" style="width:20%;">
+                        <h3 class="card-title">Storage</h3>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    </div>
+                    <a href="{{ 'storage'|page }}" class="btn btn-primary btn-lg btn-bloc">Learn More...</a>
+                </div>
+            </div>
+
+            <div class="container">
+
+                <div class="card bg-light mb-3">
+                    <div class="card-body">
+                        <img class="card-img-top" src="{{ 'assets/images/107.png'|theme }}" alt="Card image cap" style="width:20%;">
+                        <h3 class="card-title">Trusts</h3>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    </div>
+                    <a href="{{ 'trusts'|page }}" class="btn btn-primary btn-lg btn-bloc">Learn More...</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<br>
+
+<div class="container">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+                <img class="mx-auto d-block img-fluid" src="{{ 'assets/images/tes339.jpg'|theme }}" alt="First slide">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>Colin, Littleborough</h3>
+                    <p><i class="fa fa-quote-left" aria-hidden="true"></i> Your approach to taking care of the will writing and telling us just what was necessary was a great lesson in itself. <i class="fa fa-quote-right" aria-hidden="true"></i></p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img class="mx-auto d-block img-fluid text-center" src="{{ 'assets/images/tes845.jpg'|theme }}" alt="Second slide">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>Stuart & Sadie, Whitworth</h3>
+                    <p><i class="fa fa-quote-left" aria-hidden="true"></i> The service was thorough, polite, caring and above all most professional. We were so impressed, nothing was too much trouble. You made what can be a rather sombre time an ease to deal with. <i class="fa fa-quote-right" aria-hidden="true"></i></p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img class="mx-auto d-block img-fluid" src="{{ 'assets/images/tes658.jpg'|theme }}" alt="Third slide">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>Andrea, Rochdale</h3>
+                    <p><i class="fa fa-quote-left" aria-hidden="true"></i> he service was very well structured and easy to understand. I found the service to be very professional, well organised and yet at the same time also very personal to my needs, and very relaxed. <i class="fa fa-quote-right" aria-hidden="true"></i></p>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>

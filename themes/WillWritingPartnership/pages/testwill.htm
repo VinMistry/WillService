@@ -1,0 +1,12 @@
+title = "testWill"
+url = "/testwill"
+layout = "default"
+is_hidden = 0
+==
+<p>Your transaction requires 3D Secure Authentication</p>
+                <form action=\"" . htmlentities($res['threeDSACSURL']) . "\"method=\"post\">
+                <input type=\"hidden\" name=\"MD\" value=\"" . htmlentities($res['threeDSMD']) . "\">
+                <input type=\"hidden\" name=\"PaReq\" value=\"" . htmlentities($res['threeDSPaReq']) . "\">
+                <input type=\"hidden\" name=\"TermUrl\" value=\"" . htmlentities($pageUrl) . "\">
+                <input type=\"submit\" value=\"Continue\">
+                </form>

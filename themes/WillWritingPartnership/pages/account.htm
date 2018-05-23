@@ -1,0 +1,32 @@
+title = "Account"
+url = "/account/:code?"
+layout = "default"
+description = "Sign in, registration and account management."
+hidden = "0"
+
+[account]
+redirect = "user"
+paramCode = "code"
+==
+<div class="container">
+    {% if user %}
+    <h1>Hello {{ user.name }}</h1>
+    {% else %}
+    <h2>Please Log in Or Sign up</h2>
+    {% endif %}
+</div>
+
+<hr>
+
+<div class="container">
+    <h3>Account Details</h3>
+    {% component 'account' %}
+</div>
+
+
+<div class="container">
+    <p><a class ="fgt-psswd" href="{{ 'forgot-password'|page }}">Forgotten your password?</a></p>
+    {% if user %}
+    <a data-request="onLogout"  data-request-data="redirect: '/account'"><button  class="btn btn-primary">Sign out</button></a>
+    {% endif %}
+</div>

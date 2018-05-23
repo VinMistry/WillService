@@ -1,0 +1,38 @@
+title = "Restricted page"
+url = "/users"
+layout = "default"
+description = "User Area"
+hidden = "0"
+
+[session]
+security = "user"
+redirect = "home"
+==
+
+<div class="container">
+    {% if user %}
+    <h1>Hello {{ user.name }}</h1>
+    {% else %}
+    <h2>sausages</h2>
+    {% endif %}
+    {% component 'account' %}
+    <h3>Welcome To Your User Area</h3>
+</div>
+
+<hr>
+<section class="section-padding">
+    <div class="container">
+        <h3>Account Details</h3>
+
+        <p>This is a demo of the user area, this can contain anything you like.</p>
+        <h3>Online Will</h3>
+        <p>Create your DIY will</p>
+        <a href="{{ 'createwill'|page }}" ><button  class="btn btn-primary">Start DIY Will</button></a>
+    </div>
+</section>
+<hr>
+<section class="section-padding">
+    <div class="container">
+        <a data-request="onLogout" data-request-data="redirect: '/account'"><button  class="btn btn-primary">Sign out</button></a>
+    </div>
+</section>
