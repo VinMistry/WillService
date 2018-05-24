@@ -1,16 +1,16 @@
 <?php namespace WillWritingPartership\DIYWill\Models;
 
 use Model;
-
+use Validation;
 /**
- * ClientData Model
+ * ClientDataModel Model
  */
 class ClientData extends Model
 {
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'willwritingpartership_diywill_client_datas';
+    public $table = 'clientdata';
 
     /**
      * @var array Guarded fields
@@ -22,6 +22,18 @@ class ClientData extends Model
      */
     protected $fillable = [];
 
+    public $rules = [
+        'title' => 'required',
+        'firstname' => 'required|between:2,16',
+        'lastname' => 'required|between:2,16',
+        'email' => 'required|email',
+        'mobileNumber' => 'required',
+        'workNumber' => 'required',
+        'homeNumber' => 'required',
+        'addressline1' => 'required',
+        'city' => 'required',
+        'postalcode' => 'required'
+    ];
     /**
      * @var array Relations
      */

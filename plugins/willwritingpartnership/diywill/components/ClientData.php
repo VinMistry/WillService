@@ -6,12 +6,14 @@ use DB;
 use Redirect;
 use Session;
 use Auth;
+use WillWritingPartership\DIYWill\Models\ClientDataModel;
+
 class ClientData extends ComponentBase
 {
     public function componentDetails()
     {
         return [
-            'name'        => 'ClientData',
+            'name'        => 'ClientDataModel',
             'description' => 'No description provided yet...'
         ];
     }
@@ -35,6 +37,20 @@ class ClientData extends ComponentBase
         $postCode = post('postal-code');
 
 
+        $clientData = new \WillWritingPartership\DIYWill\Models\ClientData();
+        $clientData->title = $title;
+        $clientData->firstname = $fn;
+        $clientData->lastname = $ln;
+        $clientData->email = $email;
+        $clientData->contactnumber = $mob;
+        $clientData->contactnumberwork = $work;
+        $clientData->contactnumberhome = $home;
+        $clientData->street = $street;
+        $clientData->city = $city;
+        $clientData->postcode = $postCode;
+        $clientData->termsandcon = false;
+        $clientData->save();
+
         $userID = DB::table('useraccount')->insertGetId(
             [
                 'title' => $title,
@@ -57,11 +73,12 @@ class ClientData extends ComponentBase
             [
                 'octoberid' => $id,
                 'progress' => 0,
+                'complete' => false,
             ]
 
         );
 
-        return Redirect::to("termsAndCon");
+        return Redirect::to("termsandconditions");
 
     }
 

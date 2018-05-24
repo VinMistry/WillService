@@ -1,3 +1,122 @@
-<p>This is the default markup for component Executors</p>
-
-<small>You can delete this file if you want</small>
+<h1 class="text-center">Appointment of Executors</h1>
+<div class="container">
+    <hr>
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 10%"></div>
+    </div>
+    <hr>
+    <form data-request="onSubmit">
+        <div class="form-group row">
+            <label class="col-md-3">Spouse To Be Executor?</label>
+            <div class="form-check form-spacing">
+                <input type="radio" class="form-check-input" value="true" name="spouse">
+                <label class="form-check-label" for="exampleCheck1">Yes</label>
+            </div>
+            <div class="form-check">
+                <input type="radio" class="form-check-input" value="false" name="spouse">
+                <label class="form-check-label" for="exampleCheck1">No</label>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3">Mirror Executor?</label>
+            <div class="form-check form-spacing">
+                <input type="radio" class="form-check-input" value="true" name="mirror">
+                <label class="form-check-label" for="exampleCheck1">Yes</label>
+            </div>
+            <div class="form-check">
+                <input type="radio" class="form-check-input" value="false" name="mirror">
+                <label class="form-check-label" for="exampleCheck1">No</label>
+            </div>
+        </div><div class="form-group row">
+            <label class="col-md-3">Spouse Executor Type: </label>
+            <div class="form-check form-spacing">
+                <input type="radio" class="form-check-input" value="sole" name="spouseExecutor">
+                <label class="form-check-label" for="exampleCheck1">Sole</label>
+            </div>
+            <div class="form-check form-spacing">
+                <input type="radio" class="form-check-input" value="joint" name="spouseExecutor">
+                <label class="form-check-label" for="exampleCheck1">Joint</label>
+            </div>
+        </div>
+        <hr>
+        <div class="form-group row">
+            <label class="col-md-3">Type of Executor:</label>
+            <div class="form-check form-spacing">
+                <input type="radio" class="form-check-input" value="sole" name="typeExecutor">
+                <label class="form-check-label" for="exampleCheck1">Sole</label>
+            </div>
+            <div class="form-check form-spacing">
+                <input type="radio" class="form-check-input" value="joint" name="typeExecutor">
+                <label class="form-check-label" for="exampleCheck1">Joint</label>
+            </div>
+            <div class="form-check form-spacing">
+                <input type="radio" class="form-check-input" value="alternative" name="typeExecutor">
+                <label class="form-check-label" for="exampleCheck1">Alternative</label>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class=" col-md-4">
+                <label class="form-spacing">Relationship to 1st Testator</label>
+                <input type="Text" class="text-center form-control" placeholder="" name="relTo1">
+            </div>
+            <div class=" col-md-4">
+                <label class="form-spacing">Relationship to 2nd Testator</label>
+                <input type="Text" class="text-center form-control" placeholder="" name="relTo2">
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-4">
+                <label class="form-spacing">Title</label>
+                <select class="form-control" name="title">
+                    <option>Mr</option>
+                    <option>Mrs</option>
+                    <option>Miss</option>
+                    <option>Other</option>
+                </select>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class=" col-md-4">
+                <label class="form-spacing">First Name</label>
+                <input type="Text" class="text-center form-control" placeholder="" name="firstName">
+            </div>
+            <div class=" col-md-4">
+                <label class="form-spacing">Last Name</label>
+                <input type="Text" class="text-center form-control" placeholder="" name="lastName">
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Address Line 1</label>
+            <input name="address-line1" class="form-control"  type="text" placeholder="Address Line 1">
+            <small class="form-text text-muted">Street address, P.O. box, company name, c/o</small>
+        </div>
+        <div class="form-group form-inline">
+            <label  class="form-spacing">City / Town</label>
+            <input name="city" type="text" placeholder="City" class="form-control mb-2 mr-sm-2 mb-sm-0">
+            <small class="form-text text-muted"></small>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Zip / Postal Code</label>
+            <input name="postal-code" type="text" placeholder="Zip or Postal Code" class="form-control">
+            <small class="text-muted form-text">e.g. BL9 5BN </small>
+        </div>
+        <div class="form-group">
+            <label>Mobile Number</label>
+            <input type="tel" name="mobile" class="form-control" placeholder="Mobile Number" />
+        </div>
+        <div class="form-group">
+            <label>Home Number</label>
+            <input type="tel" name="homeNum" class="form-control" placeholder="Home Number" />
+        </div>
+        <div class="buttonSpace">
+            <div class="text-lg-right">
+                <button class="btn btn-success">+ Add Executor</button>
+                <!-- <button class="btn btn-danger">- Remove Testator</button> -->
+            </div>
+        </div>
+        <hr>
+        <div class="container text-center">
+            <button type="submit" class="btn text-center btn-lg btn-bloc btn-primary" >Continue</button>
+        </div>
+    </form>
+</div>

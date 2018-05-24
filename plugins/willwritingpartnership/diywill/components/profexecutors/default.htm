@@ -1,3 +1,50 @@
-<p>This is the default markup for component ProfExecutors</p>
+<h1 class="text-center">Professional Executors</h1>
+<div class="container">
+    <hr>
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%"></div>
+    </div>
+    <hr>
+    <form class="form-container" data-request="onSubmit">
+        <div class="form-check-inline row">
+            <label class="form-group">TWP to Act?</label>
+            <div class="form-check form-group form-spacing">
+                <input type="radio" class="form-check-input" value="true" name="twpYesNo">
+                <label class="form-check-label" for="exampleCheck1">Yes</label>
+            </div>
+            <div class="form-check form-group">
+                <input type="radio" class="form-check-input" value="false" name="twpYesNo">
+                <label class="form-check-label" for="exampleCheck1">No</label>
+            </div>
+        </div>
+        <div class="row form-group">
+            <label>Firm Name</label>
+            <input type="text" class="form-control" name="firmName">
+        </div>
+        <div class="form-group row">
+            <label>Address Line 1</label>
+            <input name="address-line1" class="form-control" type="text" placeholder="Address Line 1">
+            <small class="form-text text-muted">Street address, P.O. box, company name, c/o</small>
+        </div>
+        <div class="form-group form-inline row">
+            <label  class="form-spacing">City / Town</label>
+            <input name="city" type="text" placeholder="City" class="form-control mb-2 mr-sm-2 mb-sm-0">
+            <small class="form-text text-muted"></small>
+        </div>
+        <div class="form-group row">
+            <label class="form-label">Zip / Postal Code</label>
+            <input name="postal-code" type="text" placeholder="Zip or Postal Code" class="form-control">
+            <small class="text-muted form-text">e.g. BL9 5BN </small>
+        </div>
+        <div class="form-group row">
+            <label>Contact Number</label>
+            <input type="tel" name="homeNum" class="form-control" placeholder="Contact Number" />
+        </div>
+        <hr>
+        <div class="container text-center" style=".button { vertical-align: top; display: inline-block;} ">
+            <a href="{{ 'lastWill1'|page }}" class="btn btn-secondary btn-lg m-5">Back</a>
+            <button type="submit" class="btn btn-primary m-5 btn-lg">Continue</button>
+        </div>
 
-<small>You can delete this file if you want</small>
+    </form>
+</div>

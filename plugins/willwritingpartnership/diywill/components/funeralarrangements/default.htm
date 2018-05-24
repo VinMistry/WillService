@@ -1,3 +1,129 @@
-<p>This is the default markup for component FuneralArrangements</p>
-
-<small>You can delete this file if you want</small>
+<h1 class="text-center">Funeral Arrangements</h1>
+<div class="container">
+    <hr>
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 95%"></div>
+    </div>
+    <hr>
+    <form data-request="onSubmit">
+        <div class="row form-group">
+            <div class=" col-md-4">
+                <label class="form-spacing">Funeral Prearranged With</label>
+                <input type="Text" class="text-center form-control" placeholder="" name="prearranged">
+            </div>
+            <div class=" col-md-4">
+                <label class="form-spacing">Funeral Plan Ref Number</label>
+                <input type="Text" class="text-center form-control" placeholder="" name="planNumber">
+            </div>
+            <div class=" col-md-4">
+                <label class="form-spacing">How Will The Funeral Be Funded?</label>
+                <input type="Text" class="text-center form-control" placeholder="" name="funded">
+            </div>
+        </div>
+        <div class="row form-group">
+            <label class="col-md-2">Donation of Body For Research</label>
+            <div class="form-check form-spacing">
+                <input type="radio" class="form-check-input" value="true" name="body">
+                <label class="form-check-label" for="exampleCheck1">Yes</label>
+            </div>
+            <div class="form-check pr-5 ml-3">
+                <input type="radio" class="form-check-input" value="false" name="body">
+                <label class="form-check-label" for="exampleCheck1">No</label>
+            </div>
+            <label class="col-md-3 ml-4">Donation of Organs For Transplant</label>
+            <div class="form-check form-spacing">
+                <input type="radio" class="form-check-input" value="true" name="organs">
+                <label class="form-check-label" for="exampleCheck1">Yes</label>
+            </div>
+            <div class="form-check">
+                <input type="radio" class="form-check-input" value="false" name="organs">
+                <label class="form-check-label" for="exampleCheck1">No</label>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class=" col-md-4">
+                <label class="form-spacing">Any Organs Not to be Used (e.g. Eyes)</label>
+                <input type="Text" class="text-center form-control" placeholder="" name="noOrgans">
+            </div>
+        </div>
+        <div class="row form-group">
+            <label class="col-md-2">Cremation Required?</label>
+            <div class="form-check form-spacing">
+                <input type="radio" class="form-check-input" value="true" name="crem">
+                <label class="form-check-label" for="exampleCheck1">Yes</label>
+            </div>
+            <div class="form-check pr-5 ml-3">
+                <input type="radio" class="form-check-input" value="false" name="crem">
+                <label class="form-check-label" for="exampleCheck1">No</label>
+            </div>
+            <label class="col-md-3 ml-4">Burial Required?</label>
+            <div class="form-check form-spacing">
+                <input type="radio" class="form-check-input" value="true" name="burial">
+                <label class="form-check-label" for="exampleCheck1">Yes</label>
+            </div>
+            <div class="form-check">
+                <input type="radio" class="form-check-input" value="false" name="burial">
+                <label class="form-check-label" for="exampleCheck1">No</label>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class=" col-md-4">
+                <label class="form-spacing">Service to Take Place at:</label>
+                <input type="Text" class="text-center form-control" placeholder="" name="service">
+            </div>
+            <div class=" col-md-4">
+                <label class="form-spacing">Burial/Cremation Take Place at?</label>
+                <input type="Text" class="text-center form-control" placeholder="" name="burialPlace">
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-4">
+                <label>Ashes to be Buried or Scattered?</label>
+                <div class="form-check ">
+                    <input type="radio" class="form-check-input" value="true" name="bOrS">
+                    <label class="form-check-label" for="exampleCheck1">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" value="false" name="bOrS">
+                    <label class="form-check-label" for="exampleCheck1">No</label>
+                </div>
+            </div>
+            <div class=" col-md-4">
+                <label class="form-spacing">Where Will They be Buried/Scattered?</label>
+                <input type="Text" class="text-center form-control" placeholder="" name="whereBuried">
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class=" col-md-12">
+                <label class="form-spacing">Service Requirements (Particular Songs/ Religious Traditions/ Clothing Requirements/Tone of Service etc.)</label>
+                <input type="Text" class="text-center form-control" placeholder="" name="serviceReq">
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-4">
+                <label>Family Flowers Only?</label>
+                <div class="form-check ">
+                    <input type="radio" class="form-check-input" value="true" name="famflowers">
+                    <label class="form-check-label" for="exampleCheck1">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" value="false" name="famflowers">
+                    <label class="form-check-label" for="exampleCheck1">No</label>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class=" col-md-12">
+                <label class="form-spacing">Donation to Charity in Lieu of Flowers To:</label>
+                <input type="Text" class="text-center form-control" placeholder="" name="donationToCharity">
+            </div>
+        </div>
+        <section>
+            <div class="container text-center" style=".button { vertical-align: top; display: inline-block;} ">
+                <a href="{{ 'reserveBeneficiary'|page }}" class="btn btn-secondary btn-lg m-5">Back</a>
+                <button type="submit" class="btn btn-primary m-5 btn-lg">Continue</button>
+            </div>
+        </section>
+    </form>
+</div>
+<hr>

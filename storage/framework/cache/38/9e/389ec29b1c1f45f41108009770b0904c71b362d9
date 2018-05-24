@@ -1,0 +1,65 @@
+1527176818a:1:{s:8:"user.htm";a:11:{s:8:"fileName";s:8:"user.htm";s:7:"content";s:991:"title = "Restricted page"
+url = "/users"
+layout = "default"
+description = "User Area"
+hidden = "0"
+
+[session]
+security = "user"
+redirect = "home"
+==
+
+<div class="container">
+    {% if user %}
+    <h1>Hello {{ user.name }}</h1>
+    {% else %}
+    <h2>sausages</h2>
+    {% endif %}
+    {% component 'account' %}
+    <h3>Welcome To Your User Area</h3>
+</div>
+
+<hr>
+<section class="section-padding">
+    <div class="container">
+        <h3>Account Details</h3>
+
+        <p>This is a demo of the user area, this can contain anything you like.</p>
+        <h3>Online Will</h3>
+        <p>Create your DIY will</p>
+        <a href="{{ 'basic-info'|page }}" ><button  class="btn btn-primary">Start DIY Will</button></a>
+    </div>
+</section>
+<hr>
+<section class="section-padding">
+    <div class="container">
+        <a data-request="onLogout" data-request-data="redirect: '/account'"><button  class="btn btn-primary">Sign out</button></a>
+    </div>
+</section>
+";s:5:"mtime";i:1527167850;s:6:"markup";s:828:"<div class="container">
+    {% if user %}
+    <h1>Hello {{ user.name }}</h1>
+    {% else %}
+    <h2>sausages</h2>
+    {% endif %}
+    {% component 'account' %}
+    <h3>Welcome To Your User Area</h3>
+</div>
+
+<hr>
+<section class="section-padding">
+    <div class="container">
+        <h3>Account Details</h3>
+
+        <p>This is a demo of the user area, this can contain anything you like.</p>
+        <h3>Online Will</h3>
+        <p>Create your DIY will</p>
+        <a href="{{ 'basic-info'|page }}" ><button  class="btn btn-primary">Start DIY Will</button></a>
+    </div>
+</section>
+<hr>
+<section class="section-padding">
+    <div class="container">
+        <a data-request="onLogout" data-request-data="redirect: '/account'"><button  class="btn btn-primary">Sign out</button></a>
+    </div>
+</section>";s:4:"code";N;s:5:"title";s:15:"Restricted page";s:3:"url";s:6:"/users";s:6:"layout";s:7:"default";s:11:"description";s:9:"User Area";s:6:"hidden";s:1:"0";s:7:"session";a:2:{s:8:"security";s:4:"user";s:8:"redirect";s:4:"home";}}}

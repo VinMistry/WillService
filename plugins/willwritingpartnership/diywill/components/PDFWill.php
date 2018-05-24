@@ -1,7 +1,11 @@
 <?php namespace WillWritingPartnership\DIYWill\Components;
 
 use Cms\Classes\ComponentBase;
-
+use Input;
+use DB;
+use Redirect;
+use Session;
+use Auth;
 class PDFWill extends ComponentBase
 {
     public function componentDetails()
@@ -16,4 +20,7 @@ class PDFWill extends ComponentBase
     {
         return [];
     }
+
+
+
 }

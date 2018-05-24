@@ -1,0 +1,12 @@
+1527176818a:1:{s:12:"payments.htm";a:11:{s:8:"fileName";s:12:"payments.htm";s:7:"content";s:158:"title = "payments"
+url = "/payments"
+layout = "default"
+is_hidden = 0
+
+[session]
+security = "user"
+redirect = "home"
+
+[payments]
+==
+{% component 'payments' %}";s:5:"mtime";i:1527167756;s:6:"markup";s:26:"{% component 'payments' %}";s:4:"code";N;s:5:"title";s:8:"payments";s:3:"url";s:9:"/payments";s:6:"layout";s:7:"default";s:9:"is_hidden";s:1:"0";s:7:"session";a:2:{s:8:"security";s:4:"user";s:8:"redirect";s:4:"home";}s:8:"payments";a:0:{}}}

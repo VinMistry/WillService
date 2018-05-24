@@ -1,0 +1,5 @@
+1527169513a:1:{s:11:"created.htm";a:5:{s:8:"fileName";s:11:"created.htm";s:7:"content";s:97:"{% if cred %}
+<a href="{{ 'termsAndCon'|page }}" class="btn btn-primary">Continue</a>
+{% endif %}";s:5:"mtime";i:1526142575;s:6:"markup";s:97:"{% if cred %}
+<a href="{{ 'termsAndCon'|page }}" class="btn btn-primary">Continue</a>
+{% endif %}";s:4:"code";N;}}

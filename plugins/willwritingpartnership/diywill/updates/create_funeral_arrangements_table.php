@@ -42,8 +42,9 @@ class CreateFuneralArrangementsTable extends Migration
             $table->foreign('residestateid')->references('id')->on('residualestate');
             $table->integer('executors')->nullable();
             $table->foreign('executors')->references('id')->on('appointedexecutors');
-            $table->boolean('complete');
-            $table->integer('progress');
+            $table->boolean('complete')->default(false);
+            $table->integer('progress')->default(0);
+            $table->boolean('paid')->default(false);
             $table->timestamps();
         });
     }
