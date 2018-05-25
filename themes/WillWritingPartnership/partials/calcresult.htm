@@ -1,0 +1,10 @@
+{% if answer %}
+<span class="lead">
+    The result is <span class="label label-success">{{ answer }}</span>
+    {{ test }}
+</span>
+{% else %}
+<span class="text-muted">
+    Click the go button to find answer.
+</span>
+{% endif %}

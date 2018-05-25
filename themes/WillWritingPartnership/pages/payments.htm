@@ -1,0 +1,24 @@
+title = "payments"
+url = "/payments"
+layout = "default"
+is_hidden = 0
+
+[session]
+security = "user"
+redirect = "home"
+
+[payments]
+==
+<?
+function onStart()
+{
+    echo "Hi";
+    $userPaid = \WillWritingPartnership\DIYWill\Components\Payments::getIfPaid();
+    if ($userPaid == 1) {
+        return Redirect::to('pdfWill');
+    }
+}
+
+?>
+==
+{% component 'payments' %}

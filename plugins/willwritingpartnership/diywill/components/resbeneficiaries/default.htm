@@ -1,0 +1,96 @@
+<h1 class="text-center">Reserve Beneficiary</h1>
+<div class="container">
+    <hr>
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+    </div>
+    <hr>
+    <form data-request="onSubmit">
+        <div class="row form-group">
+            <div class=" col-md-4">
+                <label class="form-spacing">Relationship to 1st Testator</label>
+                <input type="Text" class="text-center form-control" placeholder="" name="rel1">
+            </div>
+            <div class=" col-md-4">
+                <label class="form-spacing">Relationship to 2nd Testator</label>
+                <input type="Text" class="text-center form-control" placeholder="" name="rel2">
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class=" col-md-4">
+                <label class="form-spacing">First Name</label>
+                <input type="Text" class="text-center form-control" placeholder="" name="firstName">
+            </div>
+            <div class=" col-md-4">
+                <label class="form-spacing">Last Name</label>
+                <input type="Text" class="text-center form-control" placeholder="" name="lastName">
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Address Line 1</label>
+            <input name="address-line1" class="form-control" type="text" placeholder="Address Line 1">
+            <small class="form-text text-muted">Street address, P.O. box, company name, c/o</small>
+        </div>
+        <div class="form-group form-inline">
+            <label  class="form-spacing">City / Town</label>
+            <input name="city"  type="text" placeholder="City" class="form-control mb-2 mr-sm-2 mb-sm-0">
+            <small class="form-text text-muted"></small>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Zip / Postal Code</label>
+            <input name="postal-code" type="text" placeholder="Zip or Postal Code" class="form-control">
+            <small class="text-muted form-text">e.g. BL9 5BN </small>
+        </div>
+        <div class="form-group">
+            <label>Mobile Number</label>
+            <input type="tel" name="mobile" class="form-control" placeholder="Mobile Number" />
+        </div>
+        <div class="form-group">
+            <label>Home Number</label>
+            <input type="tel" name="homeNum" class="form-control" placeholder="Home Number" />
+        </div>
+        <div class="row form-group">
+            <div class=" col-md-4">
+                <label class="form-spacing">Share To Beneficiary</label>
+                <input type="number" class="text-center form-control" placeholder="" name="shareToBeneficiary">
+            </div>
+            <div class=" col-md-4">
+                <label class="form-spacing">At Age</label>
+                <input type="number" class="text-center form-control" placeholder="" name="atAge1">
+            </div>
+        </div>
+        <div class="form-group row pl-4">
+            <label class="form-spacing">Or to Issue</label>
+            <div class="form-check form-spacing">
+                <input type="radio" class="form-check-input" value="true" name="toIssue">
+                <label class="form-check-label" for="exampleCheck1">Yes</label>
+            </div>
+            <div class="form-check">
+                <input type="radio" class="form-check-input" value="false" name="toIssue">
+                <label class="form-check-label" for="exampleCheck1">No</label>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3"> If Any Gift Shall Fail - to be Added Proportional to The Ones That Have Not?</label>
+            <div class="form-check form-spacing">
+                <input type="radio" class="form-check-input" value="true" name="gift">
+                <label class="form-check-label" for="exampleCheck1">Yes</label>
+            </div>
+            <div class="form-check">
+                <input type="radio" class="form-check-input" value="false" name="gift">
+                <label class="form-check-label" for="exampleCheck1">No</label>
+            </div>
+        </div>
+        <hr>
+        <h2>NON PROVISION CLAUSE: Has anyone been specifically excluded from the will? If so who?</h2>
+        <textarea name="excluded"  rows="5" cols="100">
+        </textarea>
+        <hr>
+        <section>
+            <div class="container text-center" style=".button { vertical-align: top; display: inline-block;} ">
+                <button data-request="onRedirect" class="btn btn-secondary btn-lg m-5">Back</button>
+                <button type="submit" class="btn btn-primary m-5 btn-lg">Continue</button>
+            </div>
+        </section>
+    </form>
+</div>

@@ -1,0 +1,85 @@
+description = "Default layout"
+==
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>The Will Writing Partnership - {{ this.page.title }}</title>
+        <meta name="description" content="{{ this.page.meta_description }}">
+        <meta name="title" content="{{ this.page.meta_title }}">
+        <meta name="author" content="Will Writing Partnership">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="{{ 'assets/images/favicon.ico'|theme }}" type="image/x-icon">
+        {% styles %}
+        <link href="{{ 'assets/css/bootstrap.css'|theme }}" rel="stylesheet">
+        <link href="{{ 'assets/css/theme.css'|theme }}" rel="stylesheet">
+    </head>
+    <body>
+
+        <!-- Header -->
+
+        <header id="layout-header">
+            {% if user %}
+            <div class="buttonSpace">
+                <div class="text-lg-right">
+                    <a href=" {{ 'user'|page }}"> <button  class="btn btn-primary">User Area <i class="fa fa-user"></i></button></a>
+                </div>
+            </div>
+            {% else %}
+            <div class="buttonSpace">
+                <div class="text-lg-right">
+                    <a href=" {{ 'account'|page }}"> <button  class="btn btn-primary">Login <i class="fa fa-user"></i></button></a>
+
+                    <a href=" {{ 'account'|page }}"><button  class="btn btn-primary">Register <i class="fa fa-user-plus"></i></button></a>
+                </div>
+            </div>
+            {% endif %}
+            {% partial "header" %}
+        </header>
+
+        <div class="float-sm">
+            <div class="fl-fl float-fb">
+                <i class="fa fa-facebook-square fa-2x"></i>
+                <a href="https://www.facebook.com/thewillwritingpartnership/" target="_blank"> Like us!</a>
+            </div>
+            <div class="fl-fl float-tw">
+                <i class="fa fa-twitter-square fa-2x"></i>
+                <a href="" target="_blank">Follow us!</a>
+            </div>
+            <div class="fl-fl float-gp">
+                <i class="fa fa-youtube-square fa-2x"></i>
+                <a href="https://www.youtube.com/channel/UCFlMdIX-VaAiikzcWXeK5JA" target="_blank">Recommend us!</a>
+            </div>
+            <div class="fl-fl float-rs">
+                <i class="fa fa-linkedin-square fa-2x"></i>
+                <a href="https://www.linkedin.com/in/antony-brinkman-6614443b/" target="_blank">Connect us!</a>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <section id="layout-content">
+            {% page %}
+        </section>
+
+        <!-- Footer -->
+        <footer id="layout-footer">
+            {% partial "footer" %}
+        </footer>
+
+        <!-- Scripts -->
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+        <script src="https://use.fontawesome.com/9996439db5.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+        <script src="{{ 'assets/javascript/custom.js'|theme }}"></script>
+        <script src="{{ 'assets/javascript/app.js'|theme }}"></script>
+
+
+        {% framework extras %}
+        {% scripts %}
+
+    </body>
+</html>

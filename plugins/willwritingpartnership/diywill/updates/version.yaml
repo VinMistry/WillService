@@ -1,0 +1,12 @@
+1.0.1:
+- First version of LastWill
+- create_client_datas_table.php
+- create_testators_table.php
+- create_executors_table.php
+- create_beneficiaries_table.php
+- create_funeral_arrangements_table.php
+- create_prof_executors_table.php
+
+
+
+

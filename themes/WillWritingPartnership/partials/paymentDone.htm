@@ -1,0 +1,9 @@
+
+{% if payments.responseCode == 65802 %}
+{{ payments.html | raw }}
+{% elseif payments.responseCode == 0 %}
+<p>Thanks For Your Payment</p>
+{{ html | raw }}
+{% else  %}
+{{ html | raw }}
+{% endif %}
