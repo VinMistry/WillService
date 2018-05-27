@@ -23,6 +23,9 @@ class ResBeneficiaries extends ComponentBase
         return [];
     }
 
+    /**
+     * @return redirect to previous page
+     */
     function onRedirect(){
         return Redirect::to('lastWill3');
     }

@@ -6,6 +6,7 @@ use DB;
 use Redirect;
 use Session;
 use Auth;
+use Validator;
 use WillWritingPartnership\DIYWill\Models\ClientDataModel;
 class ClientData extends ComponentBase
 {
@@ -22,8 +23,14 @@ class ClientData extends ComponentBase
         return [];
     }
 
+    /**
+     * @return redirect to next page
+    * Method gathers data from the form fields and then saves this data to the database using a model.
+    */
     public function onSubmitBasicInfo() {
 
+
+        //Get values
         $title = post('title');
         $fn = post('firstName');
         $ln = post('lastNames');
@@ -35,7 +42,7 @@ class ClientData extends ComponentBase
         $city = post('city');
         $postCode = post('postal-code');
 
-
+        //Create model and assign values to db column names
         $clientData = new ClientDataModel;
         $clientData->title = $title;
         $clientData->firstname = $fn;
@@ -50,8 +57,10 @@ class ClientData extends ComponentBase
         $clientData->termsandcon = false;
         $clientData->save();
 
+        //Pass client data id to the session
         \Session::put('ua_id', $clientData->id);
 
+        //Redirect to terms and conditions page
         return Redirect::to("termsandconditions");
 
     }

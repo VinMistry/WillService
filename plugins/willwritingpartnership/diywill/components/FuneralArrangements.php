@@ -24,12 +24,21 @@ class FuneralArrangements extends ComponentBase
         return [];
     }
 
+    /**
+     * @return redirect to previous page
+     * Redirect method for going back to the previous page
+     */
     function onRedirect(){
         return Redirect::to('lastWill4');
     }
 
+    /**
+     * @return redirect to next page
+    * Method gathers data from the form fields and then saves this data to the database using a model.
+    */
     function onSubmit()
     {
+        //Get values
         $prearranged = post('prearranged');
         $plannumber = post('planNumber');
         $funded = post('funded');
@@ -46,11 +55,13 @@ class FuneralArrangements extends ComponentBase
         $famFlowers = post('famflowers');
         $donationToCharity = post('donationToCharity');
 
+        //Get values from the db
         $octoberid = Auth::getUser()->id;
         $will = WillModel::where('octoberid', $octoberid)->first();
         $testator = TestatorModel::where('userid', $will->userid)->first();
         $testID = $testator->id;
 
+        //Create models and assign values to db column names
         $funeralArrangementsModel = new FuneralArrangementsModel;
         $funeralArrangementsModel->testatorid = $testID;
         $funeralArrangementsModel->funeralPrearranged = $prearranged;
@@ -70,31 +81,10 @@ class FuneralArrangements extends ComponentBase
         $funeralArrangementsModel->donationInLieu = $donationToCharity;
         $funeralArrangementsModel->save();
 
-
+        //Update Will table
         WillModel::where('octoberid', $octoberid)->update(['progress' => 5 ]);
-        /*
 
-        DB::table('funeralarrangements')->insert(
-            [
-                'funeralprearranged' => $prearranged,
-                'funeralplanrefno' => $plannumber,
-                'funeralfunded' => $funded,
-                'bodytoresearch' => $body,
-                'organsfortransplant' => $organs,
-                'organsnottouse' => $noOrgans,
-                'cremationreq' => $crem,
-                'burialrequired' => $burial,
-                'serviceplace' => $service,
-                'burorcremplace' => $burialPlace,
-                'burriedorscattered' => $bOrS,
-                'whereburorscat' => $whereBuried,
-                'servicereq' => $serviceReq,
-                'familyflowers' => $famFlowers,
-                'donationinlieu' => $donationToCharity
-            ]
-        );*/
-
-
+        //Redirect to the payments page
         return Redirect::to("payments");
     }
 

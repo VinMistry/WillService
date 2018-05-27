@@ -25,22 +25,23 @@ class Payments extends ComponentBase
         return [];
     }
 
-   /* function onStart() {
-        echo "Hi";
-        $userPaid = self::getIfPaid();
-        if($userPaid == 1){
-            return Redirect::to('pdfWill');
-        }
-    }*/
-
-    public static function getIfPaid(){
-        $id = Auth::getUser()->id;
+    /**
+     * @return if user has paid
+     */
+    public static function getIfPaid($id){
+       // $id = Auth::getUser()->id;
         $will = WillModel::where('octoberid', $id)->first();
         echo $will->paid;
         return $will->paid;
 
     }
 
+    /**
+     * UTP method
+     * @param array $data
+     * @param $key
+     * @return mixed|string
+     */
     public static function createSignature(array $data, $key)
     { // Sort by field name
         ksort($data);
@@ -53,7 +54,10 @@ class Payments extends ComponentBase
         return $ret;
     }
 
-    
+    /**
+     * @return 3d secure payment
+     * UTP Method
+     */
     function onPayment()
     {
 // Signature key entered on MMS. The demo accounts is fixed, // but merchant accounts can be updated from the MMS .
@@ -136,10 +140,11 @@ class Payments extends ComponentBase
                 " . htmlentities($res['responseMessage']) . "</div>";
             $this->responseCode = $res['responseCode'];
             $id = Auth::getUser()->id;
+            //Update will table
             Db::table('will')->where('octoberid', $id)->update(['paid' => 1, 'complete' => true]);
         }
         elseif ($res['responseCode'] === "0") {
-            return Redirect::to('createWill');
+            return Redirect::to('pdfWill');
             //$this['responseCode'] = $res['responseCode'];
         }
         else {

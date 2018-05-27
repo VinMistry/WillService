@@ -23,17 +23,21 @@ class TermsAndCon extends ComponentBase
         return [];
     }
 
+    /**
+     * Method gathers data from the form fields and then saves this data to the database using a model.
+     * @return redirect to next page
+     */
     function onAcceptTermsAndCon(){
-
+        //Gets id from session
         $id = \Session::get('ua_id');
-      //  Db::table('useraccount')->where('id', $id)->update(['termsandcon' => 1]);
 
+        //Update client data model table
         ClientDataModel::where('id', $id)
         ->update(['termsandcon' => 1]);
 
 
         $octoberID = Auth::getUser()->id;
-
+        //creates Will entry and adds data to it
         $willModel = new WillModel;
         $willModel->octoberid = $octoberID;
         $willModel->progress = 0;
@@ -41,7 +45,7 @@ class TermsAndCon extends ComponentBase
         $willModel->userid = $id;
         $willModel->save();
 
-
+        //Redirect to testators page
         return Redirect::to("addTestators");
     }
 }

@@ -24,9 +24,12 @@ class Executors extends ComponentBase
         return [];
     }
 
-
+    /**
+     * @return redirect to next page
+    * Method gathers data from the form fields and then saves this data to the database using a model.
+    */
     function onSubmit(){
-
+        //Get values
         $spouse = post('spouse');
         $type = post('typeExecutor');
         $rel1 = post('relTo1');
@@ -42,7 +45,7 @@ class Executors extends ComponentBase
         $mirror = post('mirror');
         $spouseExecType = post('spouseExecutor');
 
-
+        //Create models and assign values to db column names
         $appointedExecutorModel = new AppointedExecutorsModel;
         $appointedExecutorModel->spousetobeexec = $spouse;
         $appointedExecutorModel->mirrorexecutor = $mirror;
@@ -64,39 +67,16 @@ class Executors extends ComponentBase
         $executorModel->postcode = $postCode;
         $executorModel->save();
 
+        //Get October user account id
         $octoberid = Auth::getUser()->id;
 
+        //Add executor id to the session
         \Session::put('exec_id', $appointedExecutorModel->id);
 
+        //Use the will model to update the progress and add executor id on the will table
         WillModel::where('octoberid', $octoberid)->update(['executors' => $appointedExecutorModel->id, 'progress' => 1 ]);
 
-        /*
-        $appointedID  = DB::table('appointedexecutors')->insertGetId([
-            'spousetobeexec' => $spouse,
-            'mirrorexecutor' => $mirror,
-            'spousetype' => $spouseExecType
-        ]);
-
-
-        DB::table('executors')->insert(
-            [
-                'appointedid' => $appointedID,
-                'executortype' => $type,
-                'relationshiptest1' => $rel1,
-                'relationshiptest2' => $rel2,
-                'title' => $title,
-                'firstname' => $fn,
-                'lastname' => $ln,
-                'contactnumber' => $mobile,
-                'contactnumberhome' => $home,
-                'street' => $street,
-                'city' => $city,
-                'postcode' => $postCode
-            ]
-        );
-
-        */
-
+        //Redirect to professional executors page
         return Redirect::to("lastWill2");
     }
 

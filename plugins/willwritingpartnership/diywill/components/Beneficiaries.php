@@ -24,11 +24,22 @@ class Beneficiaries extends ComponentBase
         return [];
     }
 
+    /**
+     * @return redirect to previous page
+     * Redirect method for going back to the previous page
+     */
     function onRedirect(){
         return Redirect::to('lastWill2');
     }
 
-    function onSubmit(){
+    /**
+     * @return redirect to next page
+    * Method gathers data from the form fields and then saves this data to the database using a model.
+    */
+    function onSubmit()
+    {
+
+        //Get values
         $rel1 = post('rel1');
         $rel2 = post('rel2');
         $firstName = post('firstName');
@@ -44,6 +55,7 @@ class Beneficiaries extends ComponentBase
         $gift = post('gift');
         $passToSpouse = post('passToSpouse');
 
+        //Create models and assign values to db column names
         $residualEstateModel = new ResidualEstateModel;
         $residualEstateModel->passtospouse = $passToSpouse;
         $residualEstateModel->execludedfromwill = "";
@@ -62,53 +74,22 @@ class Beneficiaries extends ComponentBase
         $benificiaryModel->homenumber = $homeNum;
         $benificiaryModel->sharetobeneficiary = $sTB;
         $benificiaryModel->age = $atAge;
-        $benificiaryModel->toissue =$toIssue;
+        $benificiaryModel->toissue = $toIssue;
         $benificiaryModel->reservebeneficiary = false;
         $benificiaryModel->ifgiftfail = $gift;
         $benificiaryModel->save();
 
+        //Get the users account id
         $octoberid = Auth::getUser()->id;
-        WillModel::where('octoberid', $octoberid)->update(['progress' => 3 ]);
+        //Update Will table with progress
+        WillModel::where('octoberid', $octoberid)->update(['progress' => 3]);
 
+        //Pass residual estate to session
         \Session::put('residual_estate_id', $residualEstateModel->id);
+
+        //Redirect to the reserve beneficiaries page
         return Redirect::to("lastWill4");
-
-        /*
-         * If not using a model, a way to add data to the database is to use the DB class.
-        $benID = DB::table('beneficiary')->insertGetId(
-            [
-                'relationshiptest1' => $rel1,
-                'relationshiptest2' => $rel2,
-                'firstname' => $firstName,
-                'lastname' => $lastName,
-                'street' => $street,
-                'city' => $city,
-                'postcode' => $postCode,
-                'mobilenumber' => $mob,
-                'homenumber' => $homeNum,
-                'sharetobeneficiary' => $sTB,
-                'age' => $atAge,
-                'toissue' => $toIssue,
-                'reservebeneficiary' => false,
-                'ifgiftfail' => $gift
-
-            ]
-        );
-
-           $theID = DB::table('residualestate')->insertGetId(
-            [
-                'beneficiaryid' => $benID,
-            ]
-        );
-
-        */
-
-
-
     }
-
-
-
 
 }
 

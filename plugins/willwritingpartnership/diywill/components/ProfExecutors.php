@@ -27,11 +27,17 @@ class ProfExecutors extends ComponentBase
 
     }
 
+    /**
+     * @return redirect to previous page
+     */
     function onRedirect(){
         return Redirect::to('lastWill1');
     }
 
-
+    /**
+     * @return redirect to next page
+     * Method gathers data from the form fields and then saves this data to the database using a model.
+     */
     function onSubmit()
     {
         $twpYN = post('twpYesNo');

@@ -12,8 +12,8 @@ redirect = "home"
 <?
 function onStart()
 {
-    echo "Hi";
-    $userPaid = \WillWritingPartnership\DIYWill\Components\Payments::getIfPaid();
+
+    $userPaid = \WillWritingPartnership\DIYWill\Components\Payments::getIfPaid(Auth::getUser()->id);
     if ($userPaid == 1) {
         return Redirect::to('pdfWill');
     }
