@@ -6,6 +6,8 @@ use DB;
 use Redirect;
 use Session;
 use Auth;
+use Validator;
+use ValidationException;
 use WillWritingPartnership\DIYWill\Models\ProfessionalExecutorsModel;
 use WillWritingPartnership\DIYWill\Models\WillModel;
 class ProfExecutors extends ComponentBase
@@ -40,42 +42,46 @@ class ProfExecutors extends ComponentBase
      */
     function onSubmit()
     {
-        $twpYN = post('twpYesNo');
-        $firmName = post('firmName');
-        $street = post('address-line1');
-        $city = post('city');
-        $postCode = post('postal-code');
-        $home = post('homeNum');
+        $data = post();
 
-        $octoberid = Auth::getUser()->id;
-        $id = \Session::get('exec_id');
+        $rules = [
+            'firmName' => 'required',
+            'address-line1' => 'required',
+            'city' => 'required|alpha',
+            'postal-code' => 'required'
+        ];
+
+        $validation = Validator::make($data, $rules);
+
+        if ($validation->fails()) {
+            throw new ValidationException($validation);
+        }
+        else {
+            $twpYN = post('twpYesNo');
+            $firmName = post('firmName');
+            $street = post('address-line1');
+            $city = post('city');
+            $postCode = post('postal-code');
+            $home = post('homeNum');
+
+            $octoberid = Auth::getUser()->id;
+            $id = \Session::get('exec_id');
 
 
+            $professionalExecutorsModel = new ProfessionalExecutorsModel;
+            $professionalExecutorsModel->appointedid = $id;
+            $professionalExecutorsModel->twptoact = $twpYN;
+            $professionalExecutorsModel->firmname = $firmName;
+            $professionalExecutorsModel->contactnumber = $home;
+            $professionalExecutorsModel->street = $street;
+            $professionalExecutorsModel->city = $city;
+            $professionalExecutorsModel->postcode = $postCode;
+            $professionalExecutorsModel->save();
 
-        $professionalExecutorsModel = new ProfessionalExecutorsModel;
-        $professionalExecutorsModel->appointedid = $id;
-        $professionalExecutorsModel->twptoact = $twpYN;
-        $professionalExecutorsModel->firmname = $firmName;
-        $professionalExecutorsModel->contactnumber = $home;
-        $professionalExecutorsModel->street = $street;
-        $professionalExecutorsModel->city = $city;
-        $professionalExecutorsModel->postcode = $postCode;
-        $professionalExecutorsModel->save();
+            WillModel::where('octoberid', $octoberid)->update(['progress' => 2]);
 
-        WillModel::where('octoberid', $octoberid)->update(['progress' => 2 ]);
-        /*
-        DB::table('professionalexecutors')->insert(
-            [
-                'twptoact' => $twpYN,
-                'firmname' => $firmName,
-                'contactnumber' => $home,
-                'street' => $street,
-                'city' => $city,
-                'postcode' => $postCode
-            ]
-        );
-        */
-        return Redirect::to("lastWill3");
+            return Redirect::to("lastWill3");
+        }
     }
 
 }

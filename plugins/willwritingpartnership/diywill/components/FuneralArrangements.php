@@ -6,6 +6,8 @@ use DB;
 use Redirect;
 use Session;
 use Auth;
+use Validator;
+use ValidationException;
 use WillWritingPartnership\DIYWill\Models\FuneralArrangementsModel;
 use WillWritingPartnership\DIYWill\Models\TestatorModel;
 use WillWritingPartnership\DIYWill\Models\WillModel;
@@ -38,54 +40,67 @@ class FuneralArrangements extends ComponentBase
     */
     function onSubmit()
     {
-        //Get values
-        $prearranged = post('prearranged');
-        $plannumber = post('planNumber');
-        $funded = post('funded');
-        $body = post('body');
-        $organs = post('organs');
-        $noOrgans = post('noOrgans');
-        $crem = post('crem');
-        $burial = post('burial');
-        $service = post('service');
-        $burialPlace = post('burialPlace');
-        $bOrS = post('bOrS');
-        $whereBuried = post('whereBuried');
-        $serviceReq = post('serviceReq');
-        $famFlowers = post('famflowers');
-        $donationToCharity = post('donationToCharity');
+        $data = post();
 
-        //Get values from the db
-        $octoberid = Auth::getUser()->id;
-        $will = WillModel::where('octoberid', $octoberid)->first();
-        $testator = TestatorModel::where('userid', $will->userid)->first();
-        $testID = $testator->id;
+        $rules = [
+            'planNumber' => 'required|alpha_num'
+        ];
 
-        //Create models and assign values to db column names
-        $funeralArrangementsModel = new FuneralArrangementsModel;
-        $funeralArrangementsModel->testatorid = $testID;
-        $funeralArrangementsModel->funeralPrearranged = $prearranged;
-        $funeralArrangementsModel->funeralPlanRefNo = $plannumber;
-        $funeralArrangementsModel->funeralFunded = $funded;
-        $funeralArrangementsModel->bodyToResearch = $body;
-        $funeralArrangementsModel->organsForTransplant = $organs;
-        $funeralArrangementsModel->organsNotToUse = $noOrgans;
-        $funeralArrangementsModel->cremationReq = $crem;
-        $funeralArrangementsModel->burialRequired = $burial;
-        $funeralArrangementsModel->servicePlace = $service;
-        $funeralArrangementsModel->burOrCremPlace = $burialPlace;
-        $funeralArrangementsModel-> burriedOrScattered = $bOrS;
-        $funeralArrangementsModel->whereBurOrScat = $whereBuried;
-        $funeralArrangementsModel->serviceReq = $serviceReq;
-        $funeralArrangementsModel->familyFlowers = $famFlowers;
-        $funeralArrangementsModel->donationInLieu = $donationToCharity;
-        $funeralArrangementsModel->save();
+        $validation = Validator::make($data, $rules);
 
-        //Update Will table
-        WillModel::where('octoberid', $octoberid)->update(['progress' => 5 ]);
+        if ($validation->fails()) {
+            throw new ValidationException($validation);
+        }
+        else {
+            //Get values
+            $prearranged = post('prearranged');
+            $plannumber = post('planNumber');
+            $funded = post('funded');
+            $body = post('body');
+            $organs = post('organs');
+            $noOrgans = post('noOrgans');
+            $crem = post('crem');
+            $burial = post('burial');
+            $service = post('service');
+            $burialPlace = post('burialPlace');
+            $bOrS = post('bOrS');
+            $whereBuried = post('whereBuried');
+            $serviceReq = post('serviceReq');
+            $famFlowers = post('famflowers');
+            $donationToCharity = post('donationToCharity');
 
-        //Redirect to the payments page
-        return Redirect::to("payments");
+            //Get values from the db
+            $octoberid = Auth::getUser()->id;
+            $will = WillModel::where('octoberid', $octoberid)->first();
+            $testator = TestatorModel::where('userid', $will->userid)->first();
+            $testID = $testator->id;
+
+            //Create models and assign values to db column names
+            $funeralArrangementsModel = new FuneralArrangementsModel;
+            $funeralArrangementsModel->testatorid = $testID;
+            $funeralArrangementsModel->funeralPrearranged = $prearranged;
+            $funeralArrangementsModel->funeralPlanRefNo = $plannumber;
+            $funeralArrangementsModel->funeralFunded = $funded;
+            $funeralArrangementsModel->bodyToResearch = $body;
+            $funeralArrangementsModel->organsForTransplant = $organs;
+            $funeralArrangementsModel->organsNotToUse = $noOrgans;
+            $funeralArrangementsModel->cremationReq = $crem;
+            $funeralArrangementsModel->burialRequired = $burial;
+            $funeralArrangementsModel->servicePlace = $service;
+            $funeralArrangementsModel->burOrCremPlace = $burialPlace;
+            $funeralArrangementsModel->burriedOrScattered = $bOrS;
+            $funeralArrangementsModel->whereBurOrScat = $whereBuried;
+            $funeralArrangementsModel->serviceReq = $serviceReq;
+            $funeralArrangementsModel->familyFlowers = $famFlowers;
+            $funeralArrangementsModel->donationInLieu = $donationToCharity;
+            $funeralArrangementsModel->save();
+
+            //Update Will table
+            WillModel::where('octoberid', $octoberid)->update(['progress' => 5, 'funeralID' => $funeralArrangementsModel->id]);
+
+            //Redirect to the payments page
+            return Redirect::to("payments");
+        }
     }
 
 }

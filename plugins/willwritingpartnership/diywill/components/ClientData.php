@@ -7,6 +7,7 @@ use Redirect;
 use Session;
 use Auth;
 use Validator;
+use ValidationException;
 use WillWritingPartnership\DIYWill\Models\ClientDataModel;
 class ClientData extends ComponentBase
 {
@@ -29,40 +30,56 @@ class ClientData extends ComponentBase
     */
     public function onSubmitBasicInfo() {
 
+        $data = post();
 
-        //Get values
-        $title = post('title');
-        $fn = post('firstName');
-        $ln = post('lastNames');
-        $email = post('email');
-        $mob = post('mobile');
-        $work = post('work');
-        $home = post('homeNum');
-        $street = post('address-line1');
-        $city = post('city');
-        $postCode = post('postal-code');
+        $rules = [
+            'firstName' => 'required|alpha',
+            'lastNames' => 'required|alpha',
+            'email' => 'required|email',
+            'address-line1' => 'required',
+            'city' => 'required|alpha',
+            'postal-code' => 'required',
+        ];
 
-        //Create model and assign values to db column names
-        $clientData = new ClientDataModel;
-        $clientData->title = $title;
-        $clientData->firstname = $fn;
-        $clientData->lastname = $ln;
-        $clientData->emailaddress = $email;
-        $clientData->contactnumber = $mob;
-        $clientData->contactnumberwork = $work;
-        $clientData->contactnumberhome = $home;
-        $clientData->street = $street;
-        $clientData->city = $city;
-        $clientData->postcode = $postCode;
-        $clientData->termsandcon = false;
-        $clientData->save();
+        $validation = Validator::make($data, $rules);
 
-        //Pass client data id to the session
-        \Session::put('ua_id', $clientData->id);
+        if ($validation->fails()) {
+            throw new ValidationException($validation);
+        }
+        else {
+            //Get values
+            $title = post('title');
+            $fn = post('firstName');
+            $ln = post('lastNames');
+            $email = post('email');
+            $mob = post('mobile');
+            $work = post('work');
+            $home = post('homeNum');
+            $street = post('address-line1');
+            $city = post('city');
+            $postCode = post('postal-code');
 
-        //Redirect to terms and conditions page
-        return Redirect::to("termsandconditions");
+            //Create model and assign values to db column names
+            $clientData = new ClientDataModel;
+            $clientData->title = $title;
+            $clientData->firstname = $fn;
+            $clientData->lastname = $ln;
+            $clientData->emailaddress = $email;
+            $clientData->contactnumber = $mob;
+            $clientData->contactnumberwork = $work;
+            $clientData->contactnumberhome = $home;
+            $clientData->street = $street;
+            $clientData->city = $city;
+            $clientData->postcode = $postCode;
+            $clientData->termsandcon = false;
+            $clientData->save();
 
+            //Pass client data id to the session
+            \Session::put('ua_id', $clientData->id);
+
+            //Redirect to terms and conditions page
+            return Redirect::to("termsandconditions");
+        }
     }
 
 }

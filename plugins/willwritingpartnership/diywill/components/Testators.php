@@ -6,6 +6,8 @@ use DB;
 use Redirect;
 use Session;
 use Auth;
+use Validator;
+use ValidationException;
 use DateTime;
 use WillWritingPartnership\DIYWill\Models\TestatorModel;
 class Testators extends ComponentBase
@@ -35,74 +37,64 @@ class Testators extends ComponentBase
     function onSubmit()
     {
 
-        $marital = post('maritalStat');
-        $forHowLong = post('howLong');
-        $numCurrent = post('numOfChildCurrent');
-        $numPast = post('numOfChildPast');
-        $numUnder = post('numOfChildUnder');
-        $dob = post('dob');
-        $nationality = post('nationality');
-        $bornAt = post('bornAt');
-        $bornAtCountry = post('bornAtCountry');
-        $jobTitle = post('jobTitle');
-        $employer = post('employer');
-        $sight = post('sighted');
-        $alsoKnown = post('knowAs');
-        $formerly = post('formerly');
+        $data = post();
+
+        $rules = [
+            'howLong' => 'required| min: 0| max:100',
+            'numOfChildCurrent' => 'required| min: 0| max:100',
+            'numOfChildPast' => 'required| min: 0| max:100',
+            'numOfChildUnder' => 'required| min: 0| max:100',
+            'dob' => 'required|date'
+        ];
+
+        $validation = Validator::make($data, $rules);
+
+        if ($validation->fails()) {
+            throw new ValidationException($validation);
+        }
+        else {
+            $marital = post('maritalStat');
+            $forHowLong = post('howLong');
+            $numCurrent = post('numOfChildCurrent');
+            $numPast = post('numOfChildPast');
+            $numUnder = post('numOfChildUnder');
+            $dob = post('dob');
+            $nationality = post('nationality');
+            $bornAt = post('bornAt');
+            $bornAtCountry = post('bornAtCountry');
+            $jobTitle = post('jobTitle');
+            $employer = post('employer');
+            $sight = post('sighted');
+            $alsoKnown = post('knowAs');
+            $formerly = post('formerly');
 
 
+            $date = $this->dateGrab($dob);
 
+            $formatedDate = $date->format('m-d-Y');
 
-        $date = $this->dateGrab($dob);
+            $id = \Session::get('ua_id');
 
-        $formatedDate =  $date->format('m-d-Y');
+            $testatorModel = new TestatorModel;
+            $testatorModel->userid = $id;
+            $testatorModel->maritalstatus = $marital;
+            $testatorModel->lengthOfMaritalStatus = $forHowLong;
+            $testatorModel->childrencurrent = $numCurrent;
+            $testatorModel->childrenprevious = $numPast;
+            $testatorModel->childrenunder18 = $numUnder;
+            $testatorModel->dob = $formatedDate;
+            $testatorModel->alsoknownas = $alsoKnown;
+            $testatorModel->formerly = $formerly;
+            $testatorModel->fullysighted = $sight;
+            $testatorModel->bornintown = $bornAt;
+            $testatorModel->bornincountry = $bornAtCountry;
+            $testatorModel->nationality = $nationality;
+            $testatorModel->jobtitle = $jobTitle;
+            $testatorModel->employer = $employer;
+            $testatorModel->save();
 
-        $id = \Session::get('ua_id');
-
-        $testatorModel = new TestatorModel;
-        $testatorModel->userid = $id;
-        $testatorModel->maritalstatus = $marital;
-        $testatorModel->lengthOfMaritalStatus = $forHowLong;
-        $testatorModel->childrencurrent = $numCurrent;
-        $testatorModel->childrenprevious = $numPast;
-        $testatorModel->childrenunder18 = $numUnder;
-        $testatorModel->dob = $formatedDate;
-        $testatorModel->alsoknownas = $alsoKnown;
-        $testatorModel->formerly = $formerly;
-        $testatorModel->fullysighted = $sight;
-        $testatorModel->bornintown = $bornAt;
-        $testatorModel->bornincountry = $bornAtCountry;
-        $testatorModel->nationality = $nationality;
-        $testatorModel->jobtitle = $jobTitle;
-        $testatorModel->employer = $employer;
-        $testatorModel->save();
-
-
-
-
-
-
-        /*DB::table('testators')->insertGetId(
-            [
-                'userid' => $id,
-                'maritalstatus' => $marital,
-                'lengthOfMaritalStatus' => $forHowLong,
-                'childrencurrent' => $numCurrent,
-                'childrenprevious' => $numPast,
-                'childrenunder18' => $numUnder,
-                'dob' => $formatedDate,
-                'alsoknownas' => $alsoKnown,
-                'formerly' => $formerly,
-                'fullysighted' => $sight,
-                'bornintown' => $bornAt,
-                'bornincountry' => $bornAtCountry,
-                'nationality' => $nationality,
-                'jobtitle' => $jobTitle,
-                'employer' => $employer
-            ]
-        );*/
-
-        return Redirect::to("lastWill1");
+            return Redirect::to("lastWill1");
+        }
 
     }
 

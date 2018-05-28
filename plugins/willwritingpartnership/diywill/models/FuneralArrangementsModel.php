@@ -10,7 +10,7 @@ class FuneralArrangementsModel extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'FuneralArrangements';
+    public $table = 'funeralarrangements';
 
     /**
      * @var array Guarded fields

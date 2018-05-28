@@ -35,6 +35,7 @@ class CreateTestatorsTable extends Migration
 
     public function down()
     {
+        Schema::dropIfExists('funeralarrangements');
         Schema::dropIfExists('testators');
     }
 }

@@ -6,9 +6,12 @@ use Cms\Classes\ComponentBase;
 use Input;
 use DB;
 use Redirect;
+use Auth;
+use Validator;
+use ValidationException;
 use WillWritingPartnership\DIYWill\Models\BeneficiariesModel;
 use WillWritingPartnership\DIYWill\Models\ResidualEstateModel;
-
+use WillWritingPartnership\DIYWill\Models\WillModel;
 class Beneficiaries extends ComponentBase
 {
     public function componentDetails()
@@ -38,6 +41,25 @@ class Beneficiaries extends ComponentBase
     */
     function onSubmit()
     {
+        $data = post();
+
+        $rules = [
+            'rel1' => 'required|alpha',
+            'rel2' => 'required|alpha',
+            'firstName' => 'required|alpha',
+            'lastName' => 'required|alpha',
+            'address-line1' => 'required',
+            'city' => 'required|alpha',
+            'postal-code' => 'required',
+            'shareToBeneficiary' => 'required|min:0|max:100',
+            'atAge1' => 'required|min:0|max:100',
+        ];
+
+        $validation = Validator::make($data, $rules);
+
+        if ($validation->fails()) {
+            throw new ValidationException($validation);
+        }
 
         //Get values
         $rel1 = post('rel1');
@@ -82,7 +104,7 @@ class Beneficiaries extends ComponentBase
         //Get the users account id
         $octoberid = Auth::getUser()->id;
         //Update Will table with progress
-        WillModel::where('octoberid', $octoberid)->update(['progress' => 3]);
+        WillModel::where('octoberid', $octoberid)->update(['progress' => 3, 'residestateid' => $residualEstateModel->id]);
 
         //Pass residual estate to session
         \Session::put('residual_estate_id', $residualEstateModel->id);

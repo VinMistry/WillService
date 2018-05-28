@@ -1,0 +1,12 @@
+==
+<?php
+use Corp\Proj\Models\Account;
+use Renatio\DynamicPDF\Classes\PDF;
+use Renatio\DynamicPDF\Models\PDFTemplate;
+
+function onStart()
+   {
+       return PDF::loadTemplate('twp')->stream();
+}
+?>
+==
