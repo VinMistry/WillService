@@ -1,0 +1,17 @@
+title = "afterPayment"
+url = "/afterPayment"
+layout = "default"
+is_hidden = 0
+
+[session]
+security = "all"
+redirect = "index"
+==
+<div class="container text-center">
+    <h1> Thank You for Paying ! </h1>
+    <p>Click the button below to receive your will</p>
+    <a href="{{ 'pdf-will'|page }}"><button class="btn btn-primary">Get Will</button></a>
+
+    <p>Click the button below go back to your user area</p>
+    <a href="{{ 'user'|page }}"><button class="btn btn-primary">Back to User Area</button></a>
+</div>

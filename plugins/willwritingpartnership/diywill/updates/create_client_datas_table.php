@@ -22,6 +22,7 @@ class CreateClientDatasTable extends Migration
             $table->string('city',50);
             $table->string('postcode',10);
             $table->boolean('termsandcon');
+            $table->integer('progress')->default(0);
             $table->timestamps();
         });
     }

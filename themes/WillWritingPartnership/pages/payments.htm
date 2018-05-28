@@ -9,16 +9,15 @@ redirect = "home"
 
 [payments]
 ==
-<?
+<?php
 function onStart()
 {
 
     $userPaid = \WillWritingPartnership\DIYWill\Components\Payments::getIfPaid(Auth::getUser()->id);
     if ($userPaid == 1) {
-        return Redirect::to('pdfWill');
+        return Redirect::to('afterPayment');
     }
 }
-
 ?>
 ==
 {% component 'payments' %}

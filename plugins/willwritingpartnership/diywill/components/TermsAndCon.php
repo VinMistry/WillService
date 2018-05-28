@@ -8,6 +8,7 @@ use Session;
 use Auth;
 use WillWritingPartnership\DIYWill\Models\ClientDataModel;
 use WillWritingPartnership\DIYWill\Models\WillModel;
+use WillWritingPartnership\DIYWill\Components\ClientData;
 class TermsAndCon extends ComponentBase
 {
     public function componentDetails()
@@ -33,14 +34,13 @@ class TermsAndCon extends ComponentBase
 
         //Update client data model table
         ClientDataModel::where('id', $id)
-        ->update(['termsandcon' => 1]);
+        ->update(['termsandcon' => 1, 'progress' => 1]);
 
 
         $octoberID = Auth::getUser()->id;
         //creates Will entry and adds data to it
         $willModel = new WillModel;
         $willModel->octoberid = $octoberID;
-        $willModel->progress = 0;
         $willModel->complete = false;
         $willModel->userid = $id;
         $willModel->save();

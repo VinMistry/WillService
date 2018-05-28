@@ -8,14 +8,7 @@ class CreateExecutorsTable extends Migration
 {
     public function up()
     {
-        Schema::create('appointedexecutors', function(Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->increments('id');
-            $table->boolean('spousetobeexec');
-            $table->boolean('mirrorexecutor');
-            $table->string('spousetype',50);
-            $table->timestamps();
-        });
+
 
         Schema::create('executors', function(Blueprint $table) {
             $table->engine = 'InnoDB';
@@ -39,7 +32,7 @@ class CreateExecutorsTable extends Migration
 
     public function down()
     {
+
         Schema::dropIfExists('executors');
-        Schema::dropIfExists('appointedexecutors');
     }
 }

@@ -7,6 +7,22 @@ is_hidden = 0
 [session]
 security = "user"
 redirect = "home"
+
+[payments]
+==
+<?php
+
+function onStart() {
+ $userPaid = \WillWritingPartnership\DIYWill\Components\Payments::getIfPaid(Auth::getUser()->id);
+ if($userPaid == 1){
+     $this['paid'] = true;
+ }
+ else {
+     $this['paid'] = false;
+ }
+}
+ 
+?>
 ==
 <div class="container">
     {% if user %}
@@ -24,8 +40,13 @@ redirect = "home"
         <h3>Account Details</h3>
             <a href="{{ 'account'|page }}" ><button  class="btn btn-primary">View Your Account Details</button></a>
         <h3>Online Will</h3>
+        {% if paid == true %}
+        <p> Get your DIY will</p>
+        <a href="{{ 'pdf-will'|page }}" ><button  class="btn btn-primary">Get DIY Will</button></a>
+        {% else %}
         <p>Create your DIY will</p>
         <a href="{{ 'basic-info'|page }}" ><button  class="btn btn-primary">Start DIY Will</button></a>
+        {% endif %}
     </div>
 </section>
 <hr>

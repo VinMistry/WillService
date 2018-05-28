@@ -8,13 +8,6 @@ class CreateBeneficiariesTable extends Migration
 {
     public function up()
     {
-        Schema::create('residualestate', function(Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->increments('id');
-            $table->boolean('passtospouse');
-            $table->string('execludedfromwill',500);
-            $table->timestamps();
-        });
 
         Schema::create('beneficiary', function(Blueprint $table) {
             $table->engine = 'InnoDB';
@@ -42,6 +35,6 @@ class CreateBeneficiariesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('beneficiary');
-        Schema::dropIfExists('residualestate');
+
     }
 }

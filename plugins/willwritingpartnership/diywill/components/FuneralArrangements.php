@@ -11,6 +11,8 @@ use ValidationException;
 use WillWritingPartnership\DIYWill\Models\FuneralArrangementsModel;
 use WillWritingPartnership\DIYWill\Models\TestatorModel;
 use WillWritingPartnership\DIYWill\Models\WillModel;
+use WillWritingPartnership\DIYWill\Models\ClientDataModel;
+
 class FuneralArrangements extends ComponentBase
 {
     public function componentDetails()
@@ -36,18 +38,19 @@ class FuneralArrangements extends ComponentBase
 
     /**
      * @return redirect to next page
-    * Method gathers data from the form fields and then saves this data to the database using a model.
-    */
+     * Method gathers data from the form fields and then saves this data to the database using a model.
+     */
     function onSubmit()
     {
+        //Get all the data from the page
         $data = post();
-
+        //Set validation rules, NOTE: that some of the validation is done though Bootstrap on the page
         $rules = [
             'planNumber' => 'required|alpha_num'
         ];
-
+        //Create a validator takes the data and the rules
         $validation = Validator::make($data, $rules);
-
+        //If the validation fails throw and error
         if ($validation->fails()) {
             throw new ValidationException($validation);
         }
@@ -96,8 +99,10 @@ class FuneralArrangements extends ComponentBase
             $funeralArrangementsModel->save();
 
             //Update Will table
-            WillModel::where('octoberid', $octoberid)->update(['progress' => 5, 'funeralID' => $funeralArrangementsModel->id]);
 
+            $will = WillModel::where('octoberid', $octoberid)->first();
+            ClientDataModel::where('id', $will->userid)->update(['progress' => 5]);
+            $will->where('octoberid', $octoberid)->update( ['funeralID' => $funeralArrangementsModel->id]);
             //Redirect to the payments page
             return Redirect::to("payments");
         }

@@ -9,6 +9,7 @@ use Auth;
 use Validator;
 use ValidationException;
 use WillWritingPartnership\DIYWill\Models\ProfessionalExecutorsModel;
+use WillWritingPartnership\DIYWill\Models\ClientDataModel;
 use WillWritingPartnership\DIYWill\Models\WillModel;
 class ProfExecutors extends ComponentBase
 {
@@ -42,8 +43,10 @@ class ProfExecutors extends ComponentBase
      */
     function onSubmit()
     {
+        //Get all the data from the page
         $data = post();
 
+        //Set validation rules, NOTE: that some of the validation is done though Bootstrap on the page
         $rules = [
             'firmName' => 'required',
             'address-line1' => 'required',
@@ -51,8 +54,10 @@ class ProfExecutors extends ComponentBase
             'postal-code' => 'required'
         ];
 
+        //Create a validator takes the data and the rules
         $validation = Validator::make($data, $rules);
 
+        //If the validation fails throw and error
         if ($validation->fails()) {
             throw new ValidationException($validation);
         }
@@ -78,7 +83,8 @@ class ProfExecutors extends ComponentBase
             $professionalExecutorsModel->postcode = $postCode;
             $professionalExecutorsModel->save();
 
-            WillModel::where('octoberid', $octoberid)->update(['progress' => 2]);
+            $will = WillModel::where('octoberid', $octoberid)->first();
+            ClientDataModel::where('id', $will->userid)->update(['progress' => 4]);
 
             return Redirect::to("lastWill3");
         }

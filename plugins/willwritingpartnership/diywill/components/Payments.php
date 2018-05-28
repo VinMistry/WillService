@@ -7,11 +7,17 @@ use Redirect;
 use Session;
 use Auth;
 use WillWritingPartnership\DIYWill\Models\WillModel;
+use WillWritingPartnership\DIYWill\Models\ClientDataModel;
 class Payments extends ComponentBase
 {
 
     public $html = null;
     public $responseCode = null;
+    public $paid = false;
+
+    /**
+     * @return array component details
+     */
     public function componentDetails()
     {
         return [
@@ -20,6 +26,9 @@ class Payments extends ComponentBase
         ];
     }
 
+    /**
+     * @return array defined properties
+     */
     public function defineProperties()
     {
         return [];
@@ -28,13 +37,17 @@ class Payments extends ComponentBase
     /**
      * @return if user has paid
      */
-    public static function getIfPaid($id){
-       // $id = Auth::getUser()->id;
+    public static function getIfPaid($id)
+    {
+        global $paid;
         $will = WillModel::where('octoberid', $id)->first();
-        echo $will->paid;
+        if ($will) {
+        $paid = $will->paid;
         return $will->paid;
+    }
 
     }
+
 
     /**
      * UTP method
@@ -64,15 +77,18 @@ class Payments extends ComponentBase
         $key = 'Train37There28Metal';
 // Gateway URL
         $url = 'https://gateway.universaltp.com/direct/';
-        $cardNumber = post('cardNumber');
-        $expiryMonth = post('expiryMonth');
-        $expiryYear = post('expiryYear');
-        $cvv = post('cvv');
-        $name = post('name');
-        $email = post('email');
-        $tel = post('phone');
-        $addr = post('address');
-        $postcode = post('postcode');
+        /*
+         * Uncomment for getting actual form data
+         * For this to work it requires getting the appropriate data from the db which is not included in the code below
+        $expDate = post('cc-exp');
+        $date = explode('/', $expDate);
+        $cardNumber = post('cc-number');
+        $expiryMonth = $date[0];
+        $expiryYear = $date[1];
+        $cvv = post('x_card_code');
+        $name = post('cc-name');
+        $postcode = post('x_zip');
+        */
 
         $req = array(
             'merchantID' => '101074',
@@ -141,6 +157,8 @@ class Payments extends ComponentBase
             $this->responseCode = $res['responseCode'];
             $id = Auth::getUser()->id;
             //Update will table
+            $will = WillModel::where('octoberid', $id)->first();
+            ClientDataModel::where('id', $will->userid)->update(['progress' => 7]);
             Db::table('will')->where('octoberid', $id)->update(['paid' => 1, 'complete' => true]);
         }
         elseif ($res['responseCode'] === "0") {

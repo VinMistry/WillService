@@ -11,6 +11,8 @@ use ValidationException;
 use WillWritingPartnership\DIYWill\Models\ExecutorsModel;
 use WillWritingPartnership\DIYWill\Models\AppointedExecutorsModel;
 use WillWritingPartnership\DIYWill\Models\WillModel;
+use WillWritingPartnership\DIYWill\Models\ClientDataModel;
+
 class Executors extends ComponentBase
 {
     public function componentDetails()
@@ -31,21 +33,21 @@ class Executors extends ComponentBase
     * Method gathers data from the form fields and then saves this data to the database using a model.
     */
     function onSubmit(){
-
+        //Get all the data from the page
         $data = post();
-
-    $rules = [
-        'relTo1' => 'required|alpha',
-        'relTo2' => 'required|alpha',
-        'firstName' => 'required|alpha',
-        'lastName' => 'required|alpha',
-        'address-line1' => 'required',
-        'city' => 'required|alpha',
-        'postal-code' => 'required',
-    ];
-
+        //Set validation rules, NOTE: that some of the validation is done though Bootstrap on the page
+        $rules = [
+            'relTo1' => 'required|alpha',
+            'relTo2' => 'required|alpha',
+            'firstName' => 'required|alpha',
+            'lastName' => 'required|alpha',
+            'address-line1' => 'required',
+            'city' => 'required|alpha',
+            'postal-code' => 'required',
+         ];
+        //Create a validator takes the data and the rules
         $validation = Validator::make($data, $rules);
-
+        //If the validation fails throw and error
         if ($validation->fails()) {
             throw new ValidationException($validation);
        }
@@ -94,8 +96,10 @@ class Executors extends ComponentBase
            //Add executor id to the session
            \Session::put('exec_id', $appointedExecutorModel->id);
 
+           $will = WillModel::where('octoberid', $octoberid)->first();
+           ClientDataModel::where('id', $will->userid)->update(['progress' => 3]);
            //Use the will model to update the progress and add executor id on the will table
-           WillModel::where('octoberid', $octoberid)->update(['executors' => $appointedExecutorModel->id, 'progress' => 1]);
+           $will->update(['executors' => $appointedExecutorModel->id]);
 
            //Redirect to professional executors page
            return Redirect::to("lastWill2");

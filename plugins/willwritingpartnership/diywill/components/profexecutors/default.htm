@@ -42,24 +42,24 @@
         </div>
         <hr>
         <div class="container text-center" style=".button { vertical-align: top; display: inline-block;} ">
-            <button data-request="onRedirect" class="btn btn-secondary btn-lg m-5">Back</button>
-            <button type="submit" class="btn btn-primary m-5 btn-lg">Continue</button>
-        </div>
-    </form>
+            <!-- <button data-request="onRedirect" class="btn btn-secondary btn-lg m-5">Back</button> -->
+       <button type="submit" class="btn btn-primary m-5 btn-lg">Continue</button>
+   </div>
+</form>
 </div>
 <script>
-    document.getElementById("twpYes").addEventListener("click", function(){
-        document.getElementById('firmName').value="TWP";
-        document.getElementById('address-line1').value="The Cool Place";
-        document.getElementById('city').value="Bolton";
-        document.getElementById('postal-code').value="BL3 5AB";
-        document.getElementById('homeNum').value="012042131";
-    });
-    document.getElementById("twpNo").addEventListener("click", function(){
-        document.getElementById('firmName').value="";
-        document.getElementById('address-line1').value="";
-        document.getElementById('city').value="";
-        document.getElementById('postal-code').value="";
-        document.getElementById('homeNum').value="";
-    });
+document.getElementById("twpYes").addEventListener("click", function(){
+   document.getElementById('firmName').value="TWP";
+   document.getElementById('address-line1').value="The Cool Place";
+   document.getElementById('city').value="Bolton";
+   document.getElementById('postal-code').value="BL3 5AB";
+   document.getElementById('homeNum').value="012042131";
+});
+document.getElementById("twpNo").addEventListener("click", function(){
+   document.getElementById('firmName').value="";
+   document.getElementById('address-line1').value="";
+   document.getElementById('city').value="";
+   document.getElementById('postal-code').value="";
+   document.getElementById('homeNum').value="";
+});
 </script>

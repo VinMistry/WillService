@@ -9,8 +9,12 @@ use Auth;
 use Validator;
 use ValidationException;
 use WillWritingPartnership\DIYWill\Models\ClientDataModel;
+use WillWritingPartnership\DIYWill\Models\WillModel;
 class ClientData extends ComponentBase
 {
+    /**
+     * @return array component details
+     */
     public function componentDetails()
     {
         return [
@@ -19,6 +23,9 @@ class ClientData extends ComponentBase
         ];
     }
 
+    /**
+     * @return array defined properties
+     */
     public function defineProperties()
     {
         return [];
@@ -29,9 +36,9 @@ class ClientData extends ComponentBase
     * Method gathers data from the form fields and then saves this data to the database using a model.
     */
     public function onSubmitBasicInfo() {
-
+        //Get all the data from the page
         $data = post();
-
+        //Set validation rules, NOTE: that some of the validation is done though Bootstrap on the page
         $rules = [
             'firstName' => 'required|alpha',
             'lastNames' => 'required|alpha',
@@ -41,8 +48,10 @@ class ClientData extends ComponentBase
             'postal-code' => 'required',
         ];
 
+        //Create a validator takes the data and the rules
         $validation = Validator::make($data, $rules);
 
+        //If the validation fails throw and error
         if ($validation->fails()) {
             throw new ValidationException($validation);
         }
