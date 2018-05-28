@@ -273,6 +273,7 @@ class PDFWill extends ComponentBase
         $resRow = pg_fetch_array($result);
 
         //Gets the CSS style sheet to the document
+
         $stylesheet = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/October/themes/WillWritingPartnership/assets/css/pdf.css');
         //Create new mpdf object
         $mpdf = new \Mpdf\Mpdf();

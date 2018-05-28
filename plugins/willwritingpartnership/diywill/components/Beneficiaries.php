@@ -117,7 +117,7 @@ class Beneficiaries extends ComponentBase
             //Update table with progress
             $will = WillModel::where('octoberid', $octoberid)->first();
             ClientDataModel::where('id', $will->userid)->update(['progress' => 5]);
-            $will->update(['residestateid' => $residualEstateModel->id]);
+            WillModel::where('octoberid', $octoberid)->update(['residestateid' => $residualEstateModel->id]);
 
             //Pass residual estate to session
             \Session::put('residual_estate_id', $residualEstateModel->id);

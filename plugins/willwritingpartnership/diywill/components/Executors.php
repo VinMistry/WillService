@@ -8,11 +8,10 @@ use Session;
 use Auth;
 use Validator;
 use ValidationException;
+use WillWritingPartnership\DIYWill\Models\ClientDataModel;
 use WillWritingPartnership\DIYWill\Models\ExecutorsModel;
 use WillWritingPartnership\DIYWill\Models\AppointedExecutorsModel;
 use WillWritingPartnership\DIYWill\Models\WillModel;
-use WillWritingPartnership\DIYWill\Models\ClientDataModel;
-
 class Executors extends ComponentBase
 {
     public function componentDetails()
@@ -99,7 +98,7 @@ class Executors extends ComponentBase
            $will = WillModel::where('octoberid', $octoberid)->first();
            ClientDataModel::where('id', $will->userid)->update(['progress' => 3]);
            //Use the will model to update the progress and add executor id on the will table
-           $will->update(['executors' => $appointedExecutorModel->id]);
+           WillModel::where('octoberid', $octoberid)->update(['executors' => $appointedExecutorModel->id]);
 
            //Redirect to professional executors page
            return Redirect::to("lastWill2");

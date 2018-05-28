@@ -102,7 +102,7 @@ class FuneralArrangements extends ComponentBase
 
             $will = WillModel::where('octoberid', $octoberid)->first();
             ClientDataModel::where('id', $will->userid)->update(['progress' => 5]);
-            $will->where('octoberid', $octoberid)->update( ['funeralID' => $funeralArrangementsModel->id]);
+            WillModel::where('octoberid', $octoberid)->update( ['funeralID' => $funeralArrangementsModel->id]);
             //Redirect to the payments page
             return Redirect::to("payments");
         }
